@@ -56,7 +56,7 @@ function App() {
             )}
           </div>
         </header>
-        <aside className="sidebar">
+        <aside className="sidebar" style={{zIndex: 10}}>
           <h3 className="text-center text-success mt-4">Shopping Categories</h3>
           <Button variant="dark" className="sidebar-close-button" onClick={closeMenu}>
             x
