@@ -202,26 +202,28 @@ function HomeScreen(props) {
               </Row>
              
 
-  <Row>
+            <Row style={{marginBottom: "50px"}}>
                 <br></br><br></br>
                 <br></br>
 
-                  <ul className="products">
+                  {/* <div className="products"> */}
                     {products.map((product) => (
-                      <Col xl={4} className="mb-4">
+                      <Col md={4} key={product._id}>
 
                       <Card>
-                        <Card.Header as="h2">{product.category}</Card.Header>
-                          <Card.Img style={{height: 270}} variant="top"  src={product.image} />
-                        <Card.Body>
-                          <Link to={'/product/' + product._id}></Link>
-                            <Card.Title variant="success" as="h2"><Link to={'/product/' + product._id}>{product.name}</Link></Card.Title>
-                            <Card.Text as="h4">
-                            {product.description} <br></br>
-                             ${product.price}
-                          </Card.Text>
-                          <Button variant="success">View Details</Button>
-                        </Card.Body>
+                        <Link to={'/product/' + product._id}>
+                          <Card.Header as="h2">{product.category}</Card.Header>
+                            <Card.Img style={{height: 270}} variant="top"  src={product.image} />
+                          <Card.Body>
+                            <Link to={'/product/' + product._id}></Link>
+                              <Card.Title variant="success" as="h2"><Link to={'/product/' + product._id}>{product.name}</Link></Card.Title>
+                              <Card.Text as="h4">
+                              {product.description} <br></br>
+                              ${product.price}
+                            </Card.Text>
+                            <Button variant="success">View Details</Button>
+                          </Card.Body>
+                        </Link>
                         <div className="product-rating">
                           <Rating
                             value={product.rating}
@@ -254,7 +256,7 @@ function HomeScreen(props) {
                       //   </div>
                       // </li>
                     ))}
-                  </ul>
+                  {/* </div> */}
 
 
                      
