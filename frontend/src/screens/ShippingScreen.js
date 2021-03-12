@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { saveShipping } from '../actions/cartActions';
 import CheckoutSteps from '../components/CheckoutSteps';
+import { Button } from 'react-bootstrap';
 
 function ShippingScreen(props) {
 
@@ -18,13 +19,13 @@ function ShippingScreen(props) {
     dispatch(saveShipping({ address, city, postalCode, country }));
     props.history.push('payment');
   }
-  return <div>
+  return <div className="mt-5">
     <CheckoutSteps step1 step2 ></CheckoutSteps>
-    <div className="form">
+    <div className="form mt-5" >
       <form onSubmit={submitHandler} >
         <ul className="form-container">
           <li>
-            <h2>Shipping</h2>
+            <h2 className="text-success">Shipping</h2>
           </li>
 
           <li>
@@ -58,7 +59,7 @@ function ShippingScreen(props) {
 
 
           <li>
-            <button type="submit" className="button primary">Continue</button>
+            <Button size="lg" type="submit" variant="outline-success">Continue</Button>
           </li>
 
         </ul>

@@ -6,6 +6,7 @@ import {
   listProducts,
   deleteProdcut,
 } from '../actions/productActions';
+import { Container, Button, Table, Row , Col, Spinner} from 'react-bootstrap';
 
 function ProductsScreen(props) {
   const [modalVisible, setModalVisible] = useState(false);
@@ -97,12 +98,7 @@ function ProductsScreen(props) {
   };
   return (
     <div className="content content-margined">
-      <div className="product-header">
-        <h3>Products</h3>
-        <button className="button primary" onClick={() => openModal({})}>
-          Create Product
-        </button>
-      </div>
+     
       {modalVisible && (
         <div className="form">
           <form onSubmit={submitHandler}>
@@ -111,7 +107,7 @@ function ProductsScreen(props) {
                 <h2>Create Product</h2>
               </li>
               <li>
-                {loadingSave && <div>Loading...</div>}
+                {loadingSave && <div><Spinner animation="border" variant="primary" /></div>}
                 {errorSave && <div>{errorSave}</div>}
               </li>
 
@@ -187,60 +183,81 @@ function ProductsScreen(props) {
                 ></textarea>
               </li>
               <li>
-                <button type="submit" className="button primary">
+                <Button type="submit" variant="outline-success">
                   {id ? 'Update' : 'Create'}
-                </button>
+                </Button>
               </li>
               <li>
-                <button
+                <Button variant="outline-primary"
                   type="button"
                   onClick={() => setModalVisible(false)}
-                  className="button secondary"
+                  
                 >
                   Back
-                </button>
+                </Button>
               </li>
             </ul>
           </form>
         </div>
       )}
 
-      <div className="product-list">
-        <table className="table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Category</th>
-              <th>Brand</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((product) => (
-              <tr key={product._id}>
-                <td>{product._id}</td>
-                <td>{product.name}</td>
-                <td>{product.price}</td>
-                <td>{product.category}</td>
-                <td>{product.brand}</td>
-                <td>
-                  <button className="button" onClick={() => openModal(product)}>
-                    Edit
-                  </button>{' '}
-                  <button
-                    className="button"
-                    onClick={() => deleteHandler(product)}
-                  >
-                    Delete
-                  </button>
-                </td>
+      <Container>
+        
+                   <Row className="mb-3 mt-5">
+          <Col>        <h3 className="text-success">Products</h3>
+
+                    </Col>
+          <Col></Col><Col></Col>
+          <Col></Col>
+          
+          <Col>
+          </Col>
+          <Col> <Button variant="outline-dark" size="lg" onClick={() => openModal({})}>
+            Create Product
+                   </Button></Col>
+                   </Row>
+
+                         
+        
+
+        <div className="product-list">
+          <Table className="table" striped bordered hover>
+            <thead>
+             
+              <tr>
+                <th><h3>ID</h3></th>
+                <th><h3>Name</h3></th>
+                <th><h3>Price</h3></th>
+                <th><h3>Category</h3></th>
+                <th><h3>Brand</h3></th>
+                <th><h3>Action</h3></th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {products.map((product) => (
+                <tr key={product._id}>
+                  <td> <h4>{product._id}</h4></td>
+                  <td><h4>{product.name}</h4></td>
+                  <td><h4>{product.price}</h4></td>
+                  <td><h4>{product.category}</h4></td>
+                  <td><h4>{product.brand}</h4></td>
+                  <td>
+                    <Button variant="outline-primary" size="lg" className="button" onClick={() => openModal(product)}>
+                      Edit
+                  </Button>{' '}
+                    <Button variant="outline-danger" size="lg"
+                      className="button"
+                      onClick={() => deleteHandler(product)}
+                    >
+                      Delete
+                  </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </div>
+      </Container>
     </div>
   );
 }

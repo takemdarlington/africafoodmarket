@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CheckoutSteps from '../components/CheckoutSteps';
 import { createOrder } from '../actions/orderActions';
+import { Button, Container, Row, Col, Table, Badge } from 'react-bootstrap';
 function PlaceOrderScreen(props) {
 
   const cart = useSelector(state => state.cart);
@@ -36,100 +37,132 @@ function PlaceOrderScreen(props) {
 
   }, [success]);
 
-  return <div>
-    <CheckoutSteps step1 step2 step3 step4 ></CheckoutSteps>
-    <div className="placeorder">
-      <div className="placeorder-info">
-        <div>
-          <h3>
-            Shipping
-          </h3>
-          <div>
-            {cart.shipping.address}, {cart.shipping.city},
-          {cart.shipping.postalCode}, {cart.shipping.country},
-          </div>
-        </div>
-        <div>
-          <h3>Payment</h3>
-          <div>
-            Payment Method: {cart.payment.paymentMethod}
-          </div>
-        </div>
-        <div>
-          <ul className="cart-list-container">
-            <li>
-              <h3>
-                Shopping Cart
-          </h3>
-              <div>
-                Price
-          </div>
-            </li>
-            {
-              cartItems.length === 0 ?
+  return (
+    <Container className="mt-5">
+      {/* <div className="mt-5"> */}
+        <CheckoutSteps step1 step2 step3 step4 ></CheckoutSteps>
+      <Row className="mt-5">
+          {/* <div className="placeorder"> */}
+            <Col >
+              <div className="placeorder-info">
                 <div>
-                  Cart is empty
+                  <h3 className="text-success">
+                    Shipping
+          </h3>
+                  <div>
+                    <h4>{cart.shipping.address}, {cart.shipping.city},
+          {cart.shipping.postalCode}, {cart.shipping.country},</h4>
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-success">Payment</h3>
+                  <div>
+                    <h4>  Payment Method: {cart.payment.paymentMethod}</h4>
+                  </div>
+                </div>
+                <div>
+                  <ul className="cart-list-container">
+                    <li>
+
+  <h4 className="text-success">Shopping Cart <Badge variant="success">{ cartItems.length}</Badge>
+   </h4>
+
+                      <div>
+                        <h4>Price</h4>
+                      </div>
+                    </li>
+                    {
+                      cartItems.length === 0 ?
+                        <div>
+                      <h4>Cart is empty</h4>
           </div>
-                :
-                cartItems.map(item =>
-                  <li>
-                    <div className="cart-image">
-                      <img src={item.image} alt="product" />
-                    </div>
-                    <div className="cart-name">
-                      <div>
-                        <Link to={"/product/" + item.product}>
-                          {item.name}
-                        </Link>
+                        :
+                        cartItems.map(item =>
+                          <li>
+                            <div className="cart-image">
+                              <img src={item.image} alt="product" />
+                            </div>
+                            <div className="cart-name">
+                              <div>
+                                <Link to={"/product/" + item.product}>
+                                  <h4>{item.name}</h4>
+                                </Link>
 
-                      </div>
-                      <div>
-                        Qty: {item.qty}
-                      </div>
-                    </div>
-                    <div className="cart-price">
-                      ${item.price}
-                    </div>
-                  </li>
-                )
-            }
-          </ul>
-        </div>
-
-      
-      </div>
-      <div className="placeorder-action">
-        <ul>
-          <li>
-            <button className="button primary full-width" onClick={placeOrderHandler} >Place Order</button>
-          </li>
-          <li>
-            <h3>Order Summary</h3>
-          </li>
-          <li>
-            <div>Items</div>
-            <div>${itemsPrice}</div>
-          </li>
-          <li>
-            <div>Shipping</div>
-            <div>${shippingPrice}</div>
-          </li>
-          <li>
-            <div>Tax</div>
-            <div>${taxPrice}</div>
-          </li>
-          <li>
-            <div>Order Total</div>
-            <div>${totalPrice}</div>
-          </li>
-        </ul>
+                              </div>
+                              <div>
+                                <h4>Qty: {item.qty}</h4>
+                              </div>
+                            </div>
+                            <div className="cart-price">
+                              ${item.price}
+                            </div>
+                          </li>
+                        )
+                    }
+                  </ul>
+                </div>
 
 
+              </div>
+            </Col>
+            <Col >
+              <div className="placeorder-action">
+                
 
-      </div>
+                  
+                    
+                      <Button className="full-width" variant="outline-success" size="lg" onClick={placeOrderHandler} >Place Order</Button>
+                    
+              
+                    
+                      <h3 className="text-success text-center mt-3">Order Summary</h3>
+            <hr></hr>
 
-    </div>
-  </div>
+              <Table striped  hover variant="light" >
+               
+                  <thead >
+                    <tr>
+
+
+                  <th> <h4>Item</h4></th>
+                  <th><h4>Amount</h4></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                  <td><h4>Item</h4></td>
+                  <td> <h4>${itemsPrice}</h4></td>
+
+                    </tr>
+                    <tr>
+                  <td><h4>Shipping</h4></td>
+                  <td><h4>${shippingPrice}</h4></td>
+
+                    </tr>
+                    <tr>
+                  <td><h4>Tax</h4></td>
+                  <td><h4>${taxPrice}</h4></td>
+
+                    </tr>
+                    <tr className="text-danger">
+                      <td ><h3><bold >Order Total</bold></h3></td>
+                      <td><h3><bold >${totalPrice} </bold></h3></td>
+
+                    </tr>
+
+                  </tbody>
+               
+              </Table>
+
+
+              </div>
+            </Col>
+
+          {/* </div> */}
+      </Row>
+      {/* </div> */}
+    </Container>
+  )
 
 }
 

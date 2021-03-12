@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import {Spinner } from 'react-bootstrap';
+
 function PaypalButton(props) {
   const [sdkReady, setSdkReady] = useState(false);
 
@@ -43,7 +45,7 @@ function PaypalButton(props) {
   }, []);
 
   if (!sdkReady) {
-    return <div>Loading...</div>
+    return <div className="text-center"><Spinner animation="border" variant="primary" /></div>
   }
 
   const Button = window.paypal.Buttons.driver('react', { React, ReactDOM });

@@ -14,6 +14,7 @@ import PlaceOrderScreen from './screens/PlaceOrderScreen';
 import OrderScreen from './screens/OrderScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import OrdersScreen from './screens/OrdersScreen';
+import { Button, Row, Container } from 'react-bootstrap';
 
 function App() {
   const userSignin = useSelector((state) => state.userSignin);
@@ -31,42 +32,47 @@ function App() {
         <header className="header">
           <div className="brand">
             <button onClick={openMenu}>&#9776;</button>
-            <Link to="/">african food market</Link>
+            <Link to="/">African FoodMarket</Link>
           </div>
           <div className="header-links">
-            <a href="/cart">Cart</a>
+           <a href="/cart">Cart</a>
             {userInfo ? (
-              <Link to="/profile">{userInfo.name}</Link>
-            ) : (
+             <Link to="/profile">{userInfo.name}</Link>
+          ) : (
               <Link to="/signin">Sign In</Link>
             )}
             {userInfo && userInfo.isAdmin && (
               <div className="dropdown">
-                <a href="#">Admin</a>
-                <ul className="dropdown-content">
-                  <li>
-                    <Link to="/orders">Orders</Link>
-                    <Link to="/products">Products</Link>
-                  </li>
-                </ul>
+               <h4>
+                  <a href="#">Admin</a></h4>
+                  <ul className="dropdown-content">
+                    <li>
+                      <Link to="/orders">Orders</Link>
+                      <Link to="/products">Products</Link>
+                    </li>
+                  </ul>
+               
               </div>
             )}
           </div>
         </header>
         <aside className="sidebar">
-          <h3>Shopping Categories</h3>
-          <button className="sidebar-close-button" onClick={closeMenu}>
+          <h3 className="text-center text-success mt-4">Shopping Categories</h3>
+          <Button variant="dark" className="sidebar-close-button" onClick={closeMenu}>
             x
-          </button>
-          <ul className="categories">
-            <li>
-              <Link to="/category/tins">Tins</Link>
-            </li>
-
-            <li>
-              <Link to="/category/breverage">Breverage</Link>
-            </li>
-          </ul>
+          </Button>
+          <Container>
+            <hr></hr>
+            <Row className="ml-5 mt-5 ">
+              <h4 className="text-dark"><Link to="/category/tins">Tins</Link></h4>
+            </Row>
+            <hr></hr><hr></hr>
+            <Row className="ml-5 mt-5">
+              <h4 className="text-dark"><Link to="/category/breverage">Breverage</Link></h4>
+            </Row>
+            <hr></hr>
+          </Container>
+         
         </aside>
         <main className="main">
           <div className="content">

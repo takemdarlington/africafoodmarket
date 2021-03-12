@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { signin } from '../actions/userActions';
+import { Spinner, Button } from 'react-bootstrap';
 
 function SigninScreen(props) {
 
@@ -26,13 +27,15 @@ function SigninScreen(props) {
 
   }
   return <div className="form">
-    <form onSubmit={submitHandler} >
+    
+    <form onSubmit={submitHandler} className="mt-5" >
+      
       <ul className="form-container">
         <li>
-          <h2>Sign-In</h2>
+          <h2 className="text-success text-center">Sign-In</h2>
         </li>
         <li>
-          {loading && <div>Loading...</div>}
+          {loading && <div className="text-center"><Spinner animation="border" variant="primary" /></div>}
           {error && <div>{error}</div>}
         </li>
         <li>
@@ -48,13 +51,13 @@ function SigninScreen(props) {
           </input>
         </li>
         <li>
-          <button type="submit" className="button primary">Signin</button>
+          <Button type="submit" variant="outline-success" size="lg" >Signin</Button>
         </li>
         <li>
           New to amazona?
         </li>
         <li>
-          <Link to={redirect === "/" ? "register" : "register?redirect=" + redirect} className="button secondary text-center" >Create your amazona account</Link>
+          <Link to={redirect === "/" ? "register" : "register?redirect=" + redirect} className="button dark text-center" >Create your amazona account</Link>
         </li>
       </ul>
     </form>

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { addToCart, removeFromCart } from '../actions/cartActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { Container, Row, Col, Button, Form, Badge, Table, Image } from 'react-bootstrap';
 function CartScreen(props) {
 
   const cart = useSelector(state => state.cart);
@@ -24,69 +25,77 @@ function CartScreen(props) {
     props.history.push("/signin?redirect=shipping");
   }
 
-  return <div className="cart">
-    <div className="cart-list">
-      <ul className="cart-list-container">
-        <li>
-          <h3>
-            Shopping Cart
+  return (
+    <Container>
+      <br></br>
+      <br></br>
+
+      <div className="cart">
+        <div className="cart-list">
+          <ul className="cart-list-container">
+            <li>
+              <h3 className="text-success">
+                Items in Cart <Badge variant="success"> {cartItems.length}</Badge>
           </h3>
-          <div>
-            Price
+             
+            </li>
+            {
+              cartItems.length === 0 ?
+                <div>
+                  <h3>Cart is empty</h3>
           </div>
-        </li>
-        {
-          cartItems.length === 0 ?
-            <div>
-              Cart is empty
-          </div>
-            :
-            cartItems.map(item =>
-              <li>
-                <div className="cart-image">
-                  <img src={item.image} alt="product" />
-                </div>
-                <div className="cart-name">
-                  <div>
-                    <Link to={"/product/" + item.product}>
-                      {item.name}
-                    </Link>
+                :
 
-                  </div>
-                  <div>
-                    Qty:
-                  <select value={item.qty} onChange={(e) => dispatch(addToCart(item.product, e.target.value))}>
-                      {[...Array(item.countInStock).keys()].map(x =>
-                        <option key={x + 1} value={x + 1}>{x + 1}</option>
-                      )}
-                    </select>
-                    <button type="button" className="button" onClick={() => removeFromCartHandler(item.product)} >
-                      Delete
-                    </button>
-                  </div>
-                </div>
-                <div className="cart-price">
-                  ${item.price}
-                </div>
-              </li>
-            )
-        }
-      </ul>
+               
+            <Table className="table"  hover >
+            <thead>
+              <tr>
+                <th> <h3>Image</h3></th>
+                <th><h3>Item</h3></th>
+                <th><h3>Quantity</h3></th>
+                <th><h3>Action</h3></th>
+                <th><h3>Price</h3></th>
+              </tr>
+            </thead>
+            <tbody>
+                    {cartItems.map(item => <tr key={item._id}>
+                      <td> <Image roundedCircle style={{ height: 60, width:60}} src={item.image} alt="product" /></td>
+                      <td><h3>{item.name}</h3></td>
+                      <td><Form.Control as="select" value={item.qty} onChange={(e) => dispatch(addToCart(item.product, e.target.value))} >
+                        {[...Array(item.countInStock).keys()].map(x =>
+                          <option key={x + 1} value={x + 1}>{x + 1}</option>
+                        )}
 
-    </div>
-    <div className="cart-action">
-      <h3>
-        Subtotal ( {cartItems.reduce((a, c) => a + c.qty, 0)} items)
+                      </Form.Control></td>
+                      <td><Button type="button" size="lg" variant="outline-danger" className="button" onClick={() => removeFromCartHandler(item.product)} >
+                        Delete
+                    </Button></td>
+                      <td><h3>${item.price}</h3></td>
+                
+              </tr>)}
+            </tbody>
+          </Table>
+
+                
+            }
+          </ul>
+
+        </div>
+        <div className="cart-action">
+          <h3>
+            Subtotal ( {cartItems.reduce((a, c) => a + c.qty, 0)} items)
         :
          $ {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
-      </h3>
-      <button onClick={checkoutHandler} className="button primary full-width" disabled={cartItems.length === 0}>
-        Proceed to Checkout
-      </button>
+          </h3>
+          <Button variant="outline-success" onClick={checkoutHandler} size="lg" className="full-width mt-3" disabled={cartItems.length === 0}>
+            <h4>Proceed to Checkout</h4>
+      </Button>
 
-    </div>
+        </div>
 
-  </div>
+      </div>
+    </Container>
+    )
 }
 
 export default CartScreen;

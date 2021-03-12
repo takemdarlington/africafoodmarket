@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { savePayment } from '../actions/cartActions';
 import CheckoutSteps from '../components/CheckoutSteps';
+import { Button } from 'react-bootstrap';
 
 function PaymentScreen(props) {
   const [paymentMethod, setPaymentMethod] = useState('');
@@ -15,13 +16,13 @@ function PaymentScreen(props) {
     props.history.push('placeorder');
   };
   return (
-    <div>
+    <div className="mt-5">
       <CheckoutSteps step1 step2 step3></CheckoutSteps>
-      <div className="form">
-        <form onSubmit={submitHandler}>
+      <div className="form" >
+        <form onSubmit={submitHandler} className="mt-5">
           <ul className="form-container">
             <li>
-              <h2>Payment</h2>
+              <h2 className="text-success">Payment</h2>
             </li>
 
             <li>
@@ -38,9 +39,9 @@ function PaymentScreen(props) {
             </li>
 
             <li>
-              <button type="submit" className="button primary">
+              <Button type="submit" variant="outline-success" size="lg">
                 Continue
-              </button>
+              </Button>
             </li>
           </ul>
         </form>

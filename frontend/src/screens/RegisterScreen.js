@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { register } from '../actions/userActions';
+import {  Spinner, Button } from 'react-bootstrap';
+
 
 function RegisterScreen(props) {
 
@@ -28,13 +30,13 @@ function RegisterScreen(props) {
     dispatch(register(name, email, password));
   }
   return <div className="form">
-    <form onSubmit={submitHandler} >
+    <form onSubmit={submitHandler} className="mt-5">
       <ul className="form-container">
         <li>
-          <h2>Create Account</h2>
+          <h2 className="text-center text-success">Create Account</h2>
         </li>
         <li>
-          {loading && <div>Loading...</div>}
+          {loading && <div className="text-center"><Spinner animation="border" variant="primary" /></div>}
           {error && <div>{error}</div>}
         </li>
         <li>
@@ -62,11 +64,11 @@ function RegisterScreen(props) {
           </input>
         </li>
         <li>
-          <button type="submit" className="button primary">Register</button>
+          <Button type="submit" variant="outline-success" size="lg">Register</Button>
         </li>
         <li>
           Already have an account?
-          <Link to={redirect === "/" ? "signin" : "signin?redirect=" + redirect} className="button secondary text-center" >Create your amazona account</Link>
+          <Link to={redirect === "/" ? "signin" : "signin?redirect=" + redirect} className="button dark text-center" >Create your amazona account</Link>
 
         </li>
 
