@@ -32,7 +32,7 @@ function App() {
         <header className="header">
           <div className="brand">
             <button onClick={openMenu}>&#9776;</button>
-            <Link to="/">African FoodMarket</Link>
+            <Link to="/">Africa FoodMarket</Link>
           </div>
           <div className="header-links">
            <a href="/cart">Cart</a>
@@ -91,6 +91,7 @@ function App() {
             <Route path="/" exact={true} component={HomeScreen} />
           </div>
         </main>
+        <a href="https://wa.me/37064350423">whatsapp</a>
         <footer className="footer">All right reserved.</footer>
       </div>
     </BrowserRouter>
