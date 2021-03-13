@@ -91,8 +91,14 @@ function App() {
             <Route path="/" exact={true} component={HomeScreen} />
           </div>
         </main>
-        <a href="https://wa.me/37064350423">whatsapp</a>
-        <footer className="footer">All right reserved.</footer>
+        
+        <footer className="footer">
+          
+        <a target="_blank" href="https://wa.me/37064350423">Whatsapp</a><br/>
+        
+        All right reserved.
+        
+        </footer>
       </div>
     </BrowserRouter>
   );
