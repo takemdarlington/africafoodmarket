@@ -52,7 +52,7 @@ function OrdersScreen(props) {
               {orders.length > 0 && orders.map(order => (<tr key={order._id}>
                 <td> <h5>{order._id}</h5></td>
                 <td><h5>{order.createdAt}</h5></td>
-                <td><h5>${order.totalPrice}</h5></td>
+                <td><h5>€{order.totalPrice}</h5></td>
                 <td><h5>{order.user.name}</h5></td>
                 <td><h5>{order.user.email}</h5></td>
                 <td><h5>{order.payment.paymentMethod}</h5></td>

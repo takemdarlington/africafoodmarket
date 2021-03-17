@@ -155,16 +155,16 @@ function HomeScreen(props) {
 
       <Container>
         <Row>
-          <Col xs={6} md={4}>
+          <Col xs={12} md={4}>
             <Image src={p1} roundedCircle />
             <h3 className="text-center">Fried polish rice with baked bread</h3>
 
           </Col>
-          <Col xs={6} md={4}>
+          <Col xs={12} md={4}>
             <Image src={p1} roundedCircle />
             <h3 className="text-center">Fried polish rice with baked bread</h3>
           </Col>
-          <Col xs={6} md={4}>
+          <Col xs={12} md={4}>
             <Image src={p1} roundedCircle />
             <h3 className="text-center">Fried polish rice with baked bread</h3>
 
@@ -175,7 +175,12 @@ function HomeScreen(props) {
       <br></br><br></br>
       <br></br>
       <Container>
-        <Image src={l1} />
+        <Row>
+          <Col>
+          {/* <Image src={l1} /> */}
+
+          </Col>
+        </Row>
         
       </Container>
       
@@ -208,7 +213,7 @@ function HomeScreen(props) {
 
                   {/* <div className="products"> */}
                     {products.map((product) => (
-                      <Col md={4} key={product._id}>
+                      <Col xs={12} sm={12} md={4} key={product._id}>
 
                       <Card>
                         <Link to={'/product/' + product._id}>

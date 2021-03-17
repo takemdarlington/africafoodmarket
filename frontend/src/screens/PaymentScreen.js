@@ -56,7 +56,7 @@ function PaymentScreen(props) {
                     value="electronicmoney"
                     onChange={(e) => setPaymentMethod(e.target.value)}
                   ></input>
-                  <label for="electronicmoney">Mobile Money</label>
+                  <label for="electronicmoney">Electronic Money</label>
                 </div>
               </li>
               <li>

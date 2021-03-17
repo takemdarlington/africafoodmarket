@@ -30,7 +30,8 @@ function App() {
   };
   return (
     <BrowserRouter>
-      <div className="grid-container">
+    <Container>
+      {/* <div className="grid-container"> */}
         <header className="header">
           <div className="brand">
             <button onClick={openMenu}>&#9776;</button>
@@ -79,7 +80,8 @@ function App() {
          
         </aside>
         <main className="main">
-          <div className="content">
+
+          <div className="content container">
             <Route path="/orders" component={OrdersScreen} />
             <Route path="/profile" component={ProfileScreen} />
             <Route path="/order/:id" component={OrderScreen} />
@@ -104,7 +106,8 @@ function App() {
         All right reserved.
         
         </footer>
-      </div>
+        </Container>
+      {/* </div> */}
     </BrowserRouter>
   );
 }
