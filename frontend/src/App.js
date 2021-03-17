@@ -30,7 +30,7 @@ function App() {
   };
   return (
     <BrowserRouter>
-    <Container>
+    <div>
       {/* <div className="grid-container"> */}
         <header className="header">
           <div className="brand">
@@ -81,7 +81,7 @@ function App() {
         </aside>
         <main className="main">
 
-          <div className="content container">
+          <div className="content">
             <Route path="/orders" component={OrdersScreen} />
             <Route path="/profile" component={ProfileScreen} />
             <Route path="/order/:id" component={OrderScreen} />
@@ -106,7 +106,7 @@ function App() {
         All right reserved.
         
         </footer>
-        </Container>
+        </div>
       {/* </div> */}
     </BrowserRouter>
   );
