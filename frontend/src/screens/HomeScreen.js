@@ -153,7 +153,7 @@ function HomeScreen(props) {
       <br></br><br></br>
       <br></br>
 
-      <Container>
+      {/* <Container>
         <Row>
           <Col xs={12} md={4}>
             <Image src={p1} roundedCircle />
@@ -170,7 +170,7 @@ function HomeScreen(props) {
 
           </Col>
         </Row>
-      </Container>
+      </Container> */}
 
       <br></br><br></br>
       <br></br>
@@ -213,7 +213,7 @@ function HomeScreen(props) {
 
                   {/* <div className="products"> */}
                     {products.map((product) => (
-                      <Col xs={12} sm={12} md={4} key={product._id}>
+                      <Col xs={6} sm={6} md={3} key={product._id}>
 
                       <Card>
                         <Link to={'/product/' + product._id}>
