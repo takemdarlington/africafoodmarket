@@ -218,7 +218,7 @@ function HomeScreen(props) {
                       <Card>
                         <Link to={'/product/' + product._id}>
                           <Card.Header as="h2">{product.category}</Card.Header>
-                            <Card.Img style={{height: 270}} variant="top"  src={product.image} />
+                            <Card.Img style={{height: "175px"}} variant="top" thumbnail  src={product.image} />
                           <Card.Body>
                             <Link to={'/product/' + product._id}></Link>
                               <Card.Title variant="success" as="h2"><Link to={'/product/' + product._id}>{product.name}</Link></Card.Title>
