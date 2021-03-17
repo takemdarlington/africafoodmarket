@@ -79,7 +79,7 @@ function ProductScreen(props) {
                           </a>
                         </li>
                         <li>
-                          <h5>Price: <b>${product.price}</b></h5>
+                          <h5>Price: <b>€{product.price}</b></h5>
                         </li>
                         <li>
                           <h4> Description:</h4>                  

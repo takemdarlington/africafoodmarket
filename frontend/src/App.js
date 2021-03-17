@@ -14,6 +14,8 @@ import PlaceOrderScreen from './screens/PlaceOrderScreen';
 import OrderScreen from './screens/OrderScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import OrdersScreen from './screens/OrdersScreen';
+import UsersScreen from './screens/UsersScreen';
+
 import { Button, Row, Container } from 'react-bootstrap';
 
 function App() {
@@ -49,6 +51,8 @@ function App() {
                     <li>
                       <Link to="/orders">Orders</Link>
                       <Link to="/products">Products</Link>
+                      <Link to="/users">Users</Link>
+
                     </li>
                   </ul>
                
@@ -83,6 +87,7 @@ function App() {
             <Route path="/shipping" component={ShippingScreen} />
             <Route path="/payment" component={PaymentScreen} />
             <Route path="/placeorder" component={PlaceOrderScreen} />
+            <Route path="/users" component={UsersScreen} />
             <Route path="/signin" component={SigninScreen} />
             <Route path="/register" component={RegisterScreen} />
             <Route path="/product/:id" component={ProductScreen} />
@@ -94,7 +99,7 @@ function App() {
         
         <footer className="footer">
           
-        <a target="_blank" href="https://wa.me/37064350423">Whatsapp</a><br/>
+        <a target="_blank" href="https://wa.me/37064350423" id="whatsapp"><img width="75px" src="https://cdn2.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2-free/128/social-whatsapp-circle-512.png" /></a><br/>
         
         All right reserved.
         

@@ -219,7 +219,7 @@ function HomeScreen(props) {
                               <Card.Title variant="success" as="h2"><Link to={'/product/' + product._id}>{product.name}</Link></Card.Title>
                               <Card.Text as="h4">
                               {product.description} <br></br>
-                              ${product.price}
+                              €{product.price}
                             </Card.Text>
                             <Button variant="success">View Details</Button>
                           </Card.Body>

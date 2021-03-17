@@ -1,6 +1,6 @@
 import express from 'express';
 import User from '../models/userModel';
-import { getToken, isAuth } from '../util';
+import { getToken, isAuth, isAdmin } from '../util';
 
 const router = express.Router();
 
@@ -72,6 +72,23 @@ router.get('/createadmin', async (req, res) => {
     });
     const newUser = await user.save();
     res.send(newUser);
+  } catch (error) {
+    res.send({ message: error.message });
+  }
+});
+
+router.get('/users', isAuth, isAdmin, async (req, res) => {
+// router.get('/users', async (req, res) => {
+
+  let u = []
+  try {
+    const users = await User.find({});
+    users.forEach(user => {
+      const { _id, name, email } = user
+      u.push({_id, name, email})
+      console.log({_id, name, email})
+    });
+    res.send(u);
   } catch (error) {
     res.send({ message: error.message });
   }

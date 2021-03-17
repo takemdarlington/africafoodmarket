@@ -94,7 +94,7 @@ function PlaceOrderScreen(props) {
                               </div>
                             </div>
                             <div className="cart-price">
-                              ${item.price}
+                            €{item.price}
                             </div>
                           </li>
                         )
@@ -131,22 +131,22 @@ function PlaceOrderScreen(props) {
                   <tbody>
                     <tr>
                   <td><h4>Item</h4></td>
-                  <td> <h4>${itemsPrice}</h4></td>
+                  <td> <h4>€{itemsPrice}</h4></td>
 
                     </tr>
                     <tr>
                   <td><h4>Shipping</h4></td>
-                  <td><h4>${shippingPrice}</h4></td>
+                  <td><h4>€{shippingPrice}</h4></td>
 
                     </tr>
                     <tr>
                   <td><h4>Tax</h4></td>
-                  <td><h4>${taxPrice}</h4></td>
+                  <td><h4>€{taxPrice}</h4></td>
 
                     </tr>
                     <tr className="text-danger">
                       <td ><h3><bold >Order Total</bold></h3></td>
-                      <td><h3><bold >${totalPrice} </bold></h3></td>
+                      <td><h3><bold >€{totalPrice} </bold></h3></td>
 
                     </tr>
 

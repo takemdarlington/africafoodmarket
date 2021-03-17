@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { createOrder, detailsOrder, payOrder } from '../actions/orderActions';
 import PaypalButton from '../components/PaypalButton';
-import { Button, Container, Row, Col, Table, Badge, Spinner } from 'react-bootstrap';
+import { Button, Container, Row, Col, Table, Badge, Spinner, Jumbotron } from 'react-bootstrap';
 
 function OrderScreen(props) {
 
@@ -30,6 +30,64 @@ function OrderScreen(props) {
   return loading ? <div className="text-center"><Spinner animation="border" variant="primary" /></div> : error ? <div>{error}</div> :
 
     <Container className="mt-5" >
+      <Row>
+        <Col className="text-center">
+        <h1>Payment Details</h1>
+        {
+                order.payment.paymentMethod == "cashondelivery" && 
+              
+              <Row>
+                <Col>
+                <Jumbotron>
+                <h3>Payment will be made upon delivery</h3>
+
+                <br/><br/>
+                <Link to='/'><Button>Proceed to Home...</Button></Link>
+                </Jumbotron>
+                </Col>
+              </Row>
+              }
+
+              {
+                order.payment.paymentMethod == "banktransfer" && 
+              
+              <Row>
+                <Col>
+                <Jumbotron>
+                <h5>Please make a payment of <h3>€{order.totalPrice}</h3> to the account below and we will get back to you to proceed...</h5>
+
+                <h3>Banks name: Šiaulių bankas <br/>
+Account Name : UAB KARTPOS <br/>
+Account number : LT957180300037467041</h3>
+
+              <br/><br/>
+              <Link to='/'><Button>I have paid, proceed to Home...</Button></Link>
+
+              </Jumbotron>
+
+                </Col>
+              </Row>
+              }
+
+              {
+                order.payment.paymentMethod == "electronicmoney" && 
+              
+              <Row>
+                <Col>
+                <Jumbotron>
+                <h5>Please make a payment of <h3>€{order.totalPrice}</h3> to the account below and we will get back to you to proceed...</h5>
+                <h3>+37064350423 <br/> (Paysera and Revolut)</h3>
+
+                <br/><br/>
+                <Link to='/'><Button>I have paid, proceed to Home...</Button></Link>
+
+                </Jumbotron>
+
+                </Col>
+              </Row>
+              }
+        </Col>
+      </Row>
       <div>
         <div className="placeorder">
           <div className="placeorder-info">
@@ -86,7 +144,7 @@ function OrderScreen(props) {
                           </div>
                         </div>
                         <div className="cart-price">
-                          ${item.price}
+                        €{item.price}
                         </div>
                       </li>
                     )
@@ -99,12 +157,14 @@ function OrderScreen(props) {
           <div className="placeorder-action">
             <ul>
               <li className="placeorder-actions-payment">
-                {loadingPay && <div>Finishing Payment...</div>}
+                {/* {loadingPay && <div>Finishing Payment...</div>}
                 {!order.isPaid &&
                   <PaypalButton
                     amount={order.totalPrice}
                     onSuccess={handleSuccessPayment} />
-                }
+                } */}
+
+
               </li>
               </ul>
                 <h3 className="text-success text-center">Order Summary</h3>
@@ -124,22 +184,22 @@ function OrderScreen(props) {
               <tbody>
                 <tr>
                   <td><h4>Item</h4></td>
-                  <td> <h4>${order.itemsPrice}</h4></td>
+                  <td> <h4>€{order.itemsPrice}</h4></td>
 
                 </tr>
                 <tr>
                   <td><h4>Shipping</h4></td>
-                  <td><h4>${order.shippingPrice}</h4></td>
+                  <td><h4>€{order.shippingPrice}</h4></td>
 
                 </tr>
                 <tr>
                   <td><h4>Tax</h4></td>
-                  <td><h4>${order.taxPrice}</h4></td>
+                  <td><h4>€{order.taxPrice}</h4></td>
 
                 </tr>
                 <tr className="text-danger">
                   <td ><h3><bold >Order Total</bold></h3></td>
-                  <td><h3><bold >${order.totalPrice} </bold></h3></td>
+                  <td><h3><bold >€{order.totalPrice} </bold></h3></td>
 
                 </tr>
 

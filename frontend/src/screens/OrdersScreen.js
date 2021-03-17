@@ -39,6 +39,8 @@ function OrdersScreen(props) {
                 <th><h4>DATE</h4></th>
                 <th><h4>TOTAL</h4></th>
                 <th><h4>USER</h4></th>
+                <th><h4>EMAIL</h4></th>
+                <th><h4>PAYMENT METHOD</h4></th>
                 <th><h4>PAID</h4></th>
                 <th><h4>PAID AT</h4></th>
                 <th><h4>DELIVERED</h4></th>
@@ -47,11 +49,13 @@ function OrdersScreen(props) {
               </tr>
             </thead>
             <tbody>
-              {orders.map(order => (<tr key={order._id}>
+              {orders.length > 0 && orders.map(order => (<tr key={order._id}>
                 <td> <h5>{order._id}</h5></td>
                 <td><h5>{order.createdAt}</h5></td>
                 <td><h5>${order.totalPrice}</h5></td>
                 <td><h5>{order.user.name}</h5></td>
+                <td><h5>{order.user.email}</h5></td>
+                <td><h5>{order.payment.paymentMethod}</h5></td>
                 <td><h5>{order.isPaid.toString()}</h5></td>
                 <td><h5>{order.paidAt}</h5></td>
                 <td><h5>{order.isDelivered.toString()}</h5></td>
