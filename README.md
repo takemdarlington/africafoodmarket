@@ -8,8 +8,6 @@
 - Node & Express: Web API, Body Parser, File Upload, JWT
 - MongoDB: Mongoose, Aggregation
 - Development: ESLint, Babel, Git, Github,
-- Deployment: Heroku
-- Watch React & Node Tutorial
 
 ## Run Locally
 
