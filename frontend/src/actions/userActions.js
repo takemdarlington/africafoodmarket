@@ -4,7 +4,7 @@ import {
   USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS,
   USER_SIGNIN_FAIL, USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS, USER_REGISTER_FAIL, USER_LOGOUT, USER_UPDATE_REQUEST, USER_UPDATE_SUCCESS, USER_UPDATE_FAIL,
-  GETTING_USERS, GET_USERS, GET_USERS_FAIL, GET_USERS_SUCCESS
+  GET_USERS_FAIL, GET_USERS_SUCCESS
 } from "../constants/userConstants";
 
 const update = ({ userId, name, email, password }) => async (dispatch, getState) => {
@@ -53,23 +53,19 @@ const logout = () => (dispatch) => {
 
 const getUsers = () => async (dispatch, getState) => {
   try {
-    // dispatch({ type: PRODUCT_SAVE_REQUEST, payload: product });
     const {
       userSignin: { userInfo },
     } = getState();
 
-      const { data } = await Axios.get('/api/users/users',{
-        headers: {
-          Authorization: 'Bearer ' + userInfo.token,
-        },
-      });
+    const { data } = await Axios.get('/api/users/users', {
+      headers: {
+        Authorization: 'Bearer ' + userInfo.token,
+      },
+    });
 
-      // console.log("here")
-      // console.log(data)
-      dispatch({ type: GET_USERS_SUCCESS, payload: data });
+    dispatch({ type: GET_USERS_SUCCESS, payload: data });
 
   } catch (error) {
-    // console.log(error)
     dispatch({ type: GET_USERS_FAIL, payload: error.message });
   }
 };

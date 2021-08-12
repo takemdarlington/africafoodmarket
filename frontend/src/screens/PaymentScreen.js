@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { savePayment } from '../actions/cartActions';
 import CheckoutSteps from '../components/CheckoutSteps';
 import { Button } from 'react-bootstrap';
@@ -26,7 +25,7 @@ function PaymentScreen(props) {
             </li>
 
             <li>
-              {/* <div>
+              <div>
                 <input
                   type="radio"
                   name="paymentMethod"
@@ -35,7 +34,7 @@ function PaymentScreen(props) {
                   onChange={(e) => setPaymentMethod(e.target.value)}
                 ></input>
                 <label for="paymentMethod">Paypal</label>
-              </div> */}
+              </div>
               <div>
                 <input
                   type="radio"
@@ -46,31 +45,31 @@ function PaymentScreen(props) {
                 ></input>
                 <label for="banktransfer">Bank Transfer</label>
               </div>
-              </li>
-              <li>
-                <div>
-                  <input
-                    type="radio"
-                    name="paymentMethod"
-                    id="electronicmoney"
-                    value="electronicmoney"
-                    onChange={(e) => setPaymentMethod(e.target.value)}
-                  ></input>
-                  <label for="electronicmoney">Electronic Money</label>
-                </div>
-              </li>
-              <li>
-                <div>
-                  <input
-                    type="radio"
-                    name="paymentMethod"
-                    id="cashondelivery"
-                    value="cashondelivery"
-                    onChange={(e) => setPaymentMethod(e.target.value)}
-                  ></input>
-                  <label for="cashondelivery">Cash on Delivery</label>
-                </div>
-              </li>
+            </li>
+            <li>
+              <div>
+                <input
+                  type="radio"
+                  name="paymentMethod"
+                  id="electronicmoney"
+                  value="electronicmoney"
+                  onChange={(e) => setPaymentMethod(e.target.value)}
+                ></input>
+                <label for="electronicmoney">Electronic Money</label>
+              </div>
+            </li>
+            <li>
+              <div>
+                <input
+                  type="radio"
+                  name="paymentMethod"
+                  id="cashondelivery"
+                  value="cashondelivery"
+                  onChange={(e) => setPaymentMethod(e.target.value)}
+                ></input>
+                <label for="cashondelivery">Cash on Delivery</label>
+              </div>
+            </li>
 
             <li>
               <Button type="submit" variant="outline-success" size="lg">

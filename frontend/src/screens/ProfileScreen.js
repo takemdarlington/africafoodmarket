@@ -57,14 +57,14 @@ function ProfileScreen(props) {
                 <li>
                   <label htmlFor="name">
                     Name
-          </label>
+                  </label>
                   <input value={name} type="name" name="name" id="name" onChange={(e) => setName(e.target.value)}>
                   </input>
                 </li>
                 <li>
                   <label htmlFor="email">
                     Email
-          </label>
+                  </label>
                   <input value={email} type="email" name="email" id="email" onChange={(e) => setEmail(e.target.value)}>
                   </input>
                 </li>

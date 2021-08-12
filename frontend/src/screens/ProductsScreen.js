@@ -6,7 +6,7 @@ import {
   listProducts,
   deleteProdcut,
 } from '../actions/productActions';
-import { Container, Button, Table, Row , Col, Spinner} from 'react-bootstrap';
+import { Container, Button, Table, Row, Col, Spinner } from 'react-bootstrap';
 
 function ProductsScreen(props) {
   const [modalVisible, setModalVisible] = useState(false);
@@ -20,7 +20,7 @@ function ProductsScreen(props) {
   const [description, setDescription] = useState('');
   const [uploading, setUploading] = useState(false);
   const productList = useSelector((state) => state.productList);
-  const { loading, products, error } = productList;
+  const { products } = productList;
 
   const productSave = useSelector((state) => state.productSave);
   const {
@@ -98,7 +98,7 @@ function ProductsScreen(props) {
   };
   return (
     <div className="content content-margined">
-     
+
       {modalVisible && (
         <div className="form">
           <form onSubmit={submitHandler}>
@@ -191,7 +191,7 @@ function ProductsScreen(props) {
                 <Button variant="outline-primary"
                   type="button"
                   onClick={() => setModalVisible(false)}
-                  
+
                 >
                   Back
                 </Button>
@@ -202,28 +202,30 @@ function ProductsScreen(props) {
       )}
 
       <Container>
-        
-                   <Row className="mb-3 mt-5">
-          <Col>        <h3 className="text-success">Products</h3>
 
-                    </Col>
+        <Row className="mb-3 mt-5">
+          <Col>
+            <h3 className="text-success">Products</h3>
+          </Col>
           <Col></Col><Col></Col>
           <Col></Col>
-          
+
           <Col>
           </Col>
-          <Col> <Button variant="outline-dark" size="lg" onClick={() => openModal({})}>
-            Create Product
-                   </Button></Col>
-                   </Row>
+          <Col>
+            <Button variant="outline-dark" size="lg" onClick={() => openModal({})}>
+              Create Product
+            </Button>
+          </Col>
+        </Row>
 
-                         
-        
+
+
 
         <div className="product-list">
           <Table className="table" striped bordered hover>
             <thead>
-             
+
               <tr>
                 <th><h3>ID</h3></th>
                 <th><h3>Name</h3></th>
@@ -244,13 +246,13 @@ function ProductsScreen(props) {
                   <td>
                     <Button variant="outline-primary" size="lg" className="button" onClick={() => openModal(product)}>
                       Edit
-                  </Button>{' '}
+                    </Button>{' '}
                     <Button variant="outline-danger" size="lg"
                       className="button"
                       onClick={() => deleteHandler(product)}
                     >
                       Delete
-                  </Button>
+                    </Button>
                   </td>
                 </tr>
               ))}

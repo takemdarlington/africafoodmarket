@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { saveShipping } from '../actions/cartActions';
 import CheckoutSteps from '../components/CheckoutSteps';
 import { Button } from 'react-bootstrap';
@@ -31,28 +30,28 @@ function ShippingScreen(props) {
           <li>
             <label htmlFor="address">
               Address
-          </label>
+            </label>
             <input type="text" name="address" id="address" onChange={(e) => setAddress(e.target.value)}>
             </input>
           </li>
           <li>
             <label htmlFor="city">
               City
-          </label>
+            </label>
             <input type="text" name="city" id="city" onChange={(e) => setCity(e.target.value)}>
             </input>
           </li>
           <li>
             <label htmlFor="postalCode">
               Postal Code
-          </label>
+            </label>
             <input type="text" name="postalCode" id="postalCode" onChange={(e) => setPostalCode(e.target.value)}>
             </input>
           </li>
           <li>
             <label htmlFor="country">
               Country
-          </label>
+            </label>
             <input type="text" name="country" id="country" onChange={(e) => setCountry(e.target.value)}>
             </input>
           </li>

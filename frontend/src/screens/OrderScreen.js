@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { createOrder, detailsOrder, payOrder } from '../actions/orderActions';
+import { detailsOrder, payOrder } from '../actions/orderActions';
 import PaypalButton from '../components/PaypalButton';
 import { Button, Container, Row, Col, Table, Badge, Spinner, Jumbotron } from 'react-bootstrap';
 
 function OrderScreen(props) {
 
   const orderPay = useSelector(state => state.orderPay);
-  const { loading: loadingPay, success: successPay, error: errorPay } = orderPay;
+  const { loading: loadingPay, success: successPay } = orderPay;
   const dispatch = useDispatch();
   useEffect(() => {
     if (successPay) {
@@ -32,60 +32,60 @@ function OrderScreen(props) {
     <Container className="mt-5" >
       <Row>
         <Col className="text-center">
-        <h1>Payment Details</h1>
-        {
-                order.payment.paymentMethod == "cashondelivery" && 
-              
-              <Row>
-                <Col>
-                <Jumbotron>
-                <h3>Payment will be made upon delivery</h3>
+          <h1>Payment Details</h1>
+          {
+            order.payment.paymentMethod == "cashondelivery" &&
 
-                <br/><br/>
-                <Link to='/'><Button>Proceed to Home...</Button></Link>
+            <Row>
+              <Col>
+                <Jumbotron>
+                  <h3>Payment will be made upon delivery</h3>
+
+                  <br /><br />
+                  <Link to='/'><Button>Proceed to Home...</Button></Link>
                 </Jumbotron>
-                </Col>
-              </Row>
-              }
+              </Col>
+            </Row>
+          }
 
-              {
-                order.payment.paymentMethod == "banktransfer" && 
-              
-              <Row>
-                <Col>
+          {
+            order.payment.paymentMethod == "banktransfer" &&
+
+            <Row>
+              <Col>
                 <Jumbotron>
-                <h5>Please make a payment of <h3>€{order.totalPrice}</h3> to the account below and we will get back to you to proceed...</h5>
+                  <h5>Please make a payment of <h3>${order.totalPrice}</h3> to the account below and we will get back to you to proceed...</h5>
 
-                <h3>Banks name: Šiaulių bankas <br/>
-Account Name : UAB KARTPOS <br/>
-Account number : LT957180300037467041</h3>
+                  <h3>Banks name: Šiaulių bankas <br />
+                    Account Name : UAB KARTPOS <br />
+                    Account number : LT957180300037467041</h3>
 
-              <br/><br/>
-              <Link to='/'><Button>I have paid, proceed to Home...</Button></Link>
-
-              </Jumbotron>
-
-                </Col>
-              </Row>
-              }
-
-              {
-                order.payment.paymentMethod == "electronicmoney" && 
-              
-              <Row>
-                <Col>
-                <Jumbotron>
-                <h5>Please make a payment of <h3>€{order.totalPrice}</h3> to the account below and we will get back to you to proceed...</h5>
-                <h3>+37064350423 <br/> (Paysera and Revolut)</h3>
-
-                <br/><br/>
-                <Link to='/'><Button>I have paid, proceed to Home...</Button></Link>
+                  <br /><br />
+                  <Link to='/'><Button>I have paid, proceed to Home...</Button></Link>
 
                 </Jumbotron>
 
-                </Col>
-              </Row>
-              }
+              </Col>
+            </Row>
+          }
+
+          {
+            order.payment.paymentMethod == "electronicmoney" &&
+
+            <Row>
+              <Col>
+                <Jumbotron>
+                  <h5>Please make a payment of <h3>${order.totalPrice}</h3> to the account below and we will get back to you to proceed...</h5>
+                  <h3>+37064350423 <br /> (Paysera and Revolut)</h3>
+
+                  <br /><br />
+                  <Link to='/'><Button>I have paid, proceed to Home...</Button></Link>
+
+                </Jumbotron>
+
+              </Col>
+            </Row>
+          }
         </Col>
       </Row>
       <div>
@@ -94,11 +94,11 @@ Account number : LT957180300037467041</h3>
             <div>
               <h3 className="text-success">
                 Shipping
-          </h3>
+              </h3>
               <div>
                 <h4>{order.shipping.address}, {order.shipping.city},
-          {order.shipping.postalCode}, {order.shipping.country},</h4>
-          </div>
+                  {order.shipping.postalCode}, {order.shipping.country},</h4>
+              </div>
               <div>
                 <h4> {order.isDelivered ? "Delivered at " + order.deliveredAt : "Not Delivered."}</h4>
               </div>
@@ -116,16 +116,16 @@ Account number : LT957180300037467041</h3>
                 <li>
                   <h3 className="text-success">
                     Shopping Cart <Badge variant="success"> {order.orderItems.length}</Badge>
-          </h3>
+                  </h3>
                   <div>
                     <h3>Price</h3>
-          </div>
+                  </div>
                 </li>
                 {
                   order.orderItems.length === 0 ?
                     <div>
                       <h3>Cart is empty</h3>
-          </div>
+                    </div>
                     :
                     order.orderItems.map(item =>
                       <li key={item._id}>
@@ -144,7 +144,7 @@ Account number : LT957180300037467041</h3>
                           </div>
                         </div>
                         <div className="cart-price">
-                        €{item.price}
+                          ${item.price}
                         </div>
                       </li>
                     )
@@ -157,19 +157,19 @@ Account number : LT957180300037467041</h3>
           <div className="placeorder-action">
             <ul>
               <li className="placeorder-actions-payment">
-                {/* {loadingPay && <div>Finishing Payment...</div>}
+                {loadingPay && <div>Finishing Payment...</div>}
                 {!order.isPaid &&
                   <PaypalButton
                     amount={order.totalPrice}
                     onSuccess={handleSuccessPayment} />
-                } */}
+                }
 
 
               </li>
-              </ul>
-                <h3 className="text-success text-center">Order Summary</h3>
-                <hr></hr>
-            
+            </ul>
+            <h3 className="text-success text-center">Order Summary</h3>
+            <hr></hr>
+
 
             <Table striped hover variant="light" >
 
@@ -184,29 +184,29 @@ Account number : LT957180300037467041</h3>
               <tbody>
                 <tr>
                   <td><h4>Item</h4></td>
-                  <td> <h4>€{order.itemsPrice}</h4></td>
+                  <td> <h4>${order.itemsPrice}</h4></td>
 
                 </tr>
                 <tr>
                   <td><h4>Shipping</h4></td>
-                  <td><h4>€{order.shippingPrice}</h4></td>
+                  <td><h4>${order.shippingPrice}</h4></td>
 
                 </tr>
                 <tr>
                   <td><h4>Tax</h4></td>
-                  <td><h4>€{order.taxPrice}</h4></td>
+                  <td><h4>${order.taxPrice}</h4></td>
 
                 </tr>
                 <tr className="text-danger">
                   <td ><h3><bold >Order Total</bold></h3></td>
-                  <td><h3><bold >€{order.totalPrice} </bold></h3></td>
+                  <td><h3><bold >${order.totalPrice} </bold></h3></td>
 
                 </tr>
 
               </tbody>
 
             </Table>
-           
+
 
 
 

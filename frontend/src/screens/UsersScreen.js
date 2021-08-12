@@ -1,31 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getUsers } from '../actions/userActions';
-import { Table, Container, Spinner, Button } from 'react-bootstrap';
+import { Table, Container, Spinner } from 'react-bootstrap';
 
 function UsersScreen(props) {
   const usersList = useSelector(state => state.usersList);
   const { loading, users, error } = usersList;
 
-  // const orderDelete = useSelector(state => state.orderDelete);
-  // const { loading: loadingDelete, success: successDelete, error: errorDelete } = orderDelete;
-
   const dispatch = useDispatch();
-  // dispatch(getUsers);
-  // dispatch(getUsers());
 
   useEffect(() => {
-    // dispatch(listOrders());
     dispatch(getUsers());
     return () => {
       //
     };
   }, []);
 
-  // const deleteHandler = (order) => {
-  //   dispatch(deleteOrder(order._id));
-  // }
   return loading ? <div><Spinner animation="border" variant="primary" /></div> :
     <Container>
       <div className="content content-margined">
@@ -50,9 +40,6 @@ function UsersScreen(props) {
                 <td><h5>{user.name}</h5></td>
                 <td><h5>{user.email}</h5></td>
                 <td>
-                  {/* <Button variant="outline-primary" size="lg" ><Link to={"/order/" + order._id} >Details</Link></Button>
-                  {' '}
-                  <Button type="button" onClick={() => deleteHandler(order)} variant="outline-danger" size="lg">Delete</Button> */}
                 </td>
               </tr>))}
             </tbody>

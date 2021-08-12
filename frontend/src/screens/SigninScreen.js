@@ -27,9 +27,9 @@ function SigninScreen(props) {
 
   }
   return <div className="form">
-    
+
     <form onSubmit={submitHandler} className="mt-5" >
-      
+
       <ul className="form-container">
         <li>
           <h2 className="text-success text-center">Sign-In</h2>
@@ -54,10 +54,7 @@ function SigninScreen(props) {
           <Button type="submit" variant="outline-success" size="lg" >Signin</Button>
         </li>
         <li>
-          New to amazona?
-        </li>
-        <li>
-          <Link to={redirect === "/" ? "register" : "register?redirect=" + redirect} className="button dark text-center" >Create your amazona account</Link>
+          <Link to={redirect === "/" ? "register" : "register?redirect=" + redirect} className="button dark text-center" >Create Account</Link>
         </li>
       </ul>
     </form>

@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { listProducts } from '../actions/productActions';
 import Rating from '../components/Rating';
-import { Alert, Carousel, Badge } from 'react-bootstrap';
+import { Carousel, Badge } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -12,16 +11,11 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import Spinner from 'react-bootstrap/Spinner';
-import Image from 'react-bootstrap/Image';
 
-import bg1 from './bg1.jpg';
-import bg2 from './bg2.jpg';
-import bg3 from './bg5.jpg';
-import p1 from './p1.jpg';
-import p2 from './p2.jpg';
-import p3 from './p3.png';
 
-import l1 from './l1.PNG';
+import bg1 from '../assets/bg1.jpg'
+import bg2 from '../assets/bg2.jpg';
+import bg3 from '../assets/bg5.jpg';
 
 function HomeScreen(props) {
   const [searchKeyword, setSearchKeyword] = useState('');
@@ -124,20 +118,8 @@ function HomeScreen(props) {
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
-      <br></br><br></br>
-      <br></br>
 
-      <br></br><br></br>
-      <br></br>
-      <Container>
-        <Row>
-          <Col>
-            {/* <Image src={l1} /> */}
 
-          </Col>
-        </Row>
-
-      </Container>
 
 
       {loading ? (
@@ -178,7 +160,7 @@ function HomeScreen(props) {
                       <Card.Title variant="success" as="h2"><Link to={'/product/' + product._id}>{product.name}</Link></Card.Title>
                       <Card.Text as="h4">
                         {product.description} <br></br>
-                        €{product.price}
+                        ${product.price}
                       </Card.Text>
                       <Button variant="success">View Details</Button>
                     </Card.Body>

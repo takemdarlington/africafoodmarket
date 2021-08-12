@@ -19,49 +19,54 @@ import UsersScreen from './screens/UsersScreen';
 import { Button, Row, Container } from 'react-bootstrap';
 
 function App() {
+
+  //get user info from store
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
 
+  //toggling of sidebar
   const openMenu = () => {
     document.querySelector('.sidebar').classList.add('open');
   };
   const closeMenu = () => {
     document.querySelector('.sidebar').classList.remove('open');
   };
+
   return (
     <BrowserRouter>
-    <div>
-      {/* <div className="grid-container"> */}
+      <div>
         <header className="header">
           <div className="brand">
             <button onClick={openMenu}>&#9776;</button>
             <Link to="/">Africa FoodMarket</Link>
           </div>
           <div className="header-links">
-           <a href="/cart">Cart</a>
+            <a href="/cart">Cart</a>
+
             {userInfo ? (
-             <Link to="/profile">{userInfo.name}</Link>
-          ) : (
+              <Link to="/profile">{userInfo.name}</Link>
+            ) : (
               <Link to="/signin">Sign In</Link>
             )}
+
             {userInfo && userInfo.isAdmin && (
               <div className="dropdown">
-               <h4>
-                  <a href="#">Admin</a></h4>
-                  <ul className="dropdown-content">
-                    <li>
-                      <Link to="/orders">Orders</Link>
-                      <Link to="/products">Products</Link>
-                      <Link to="/users">Users</Link>
+                <h4>
+                  <a href="/">Admin</a></h4>
+                <ul className="dropdown-content">
+                  <li>
+                    <Link to="/orders">Orders</Link>
+                    <Link to="/products">Products</Link>
+                    <Link to="/users">Users</Link>
 
-                    </li>
-                  </ul>
-               
+                  </li>
+                </ul>
+
               </div>
             )}
           </div>
         </header>
-        <aside className="sidebar" style={{zIndex: 10}}>
+        <aside className="sidebar" style={{ zIndex: 10 }}>
           <h3 className="text-center text-success mt-4">Shopping Categories</h3>
           <Button variant="dark" className="sidebar-close-button" onClick={closeMenu}>
             x
@@ -77,7 +82,7 @@ function App() {
             </Row>
             <hr></hr>
           </Container>
-         
+
         </aside>
         <main className="main">
 
@@ -98,16 +103,15 @@ function App() {
             <Route path="/" exact={true} component={HomeScreen} />
           </div>
         </main>
-        
+
         <footer className="footer">
-          
-        <a target="_blank" href="https://wa.me/37064350423" id="whatsapp"><img width="75px" src="https://cdn2.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2-free/128/social-whatsapp-circle-512.png" /></a><br/>
-        
-        All right reserved.
-        
+
+          <a target="_blank" rel="noopener noreferrer" href="https://wa.me/37064350423" id="whatsapp"><img width="75px" alt="whatsapp" src="https://cdn2.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2-free/128/social-whatsapp-circle-512.png" /></a><br />
+
+          All right reserved.
+
         </footer>
-        </div>
-      {/* </div> */}
+      </div>
     </BrowserRouter>
   );
 }

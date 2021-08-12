@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { register } from '../actions/userActions';
-import {  Spinner, Button } from 'react-bootstrap';
+import { Spinner, Button } from 'react-bootstrap';
 
 
 function RegisterScreen(props) {
@@ -27,7 +27,9 @@ function RegisterScreen(props) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(register(name, email, password));
+    if (rePassword === password) {
+      dispatch(register(name, email, password));
+    }
   }
   return <div className="form">
     <form onSubmit={submitHandler} className="mt-5">
@@ -69,9 +71,7 @@ function RegisterScreen(props) {
         <li>
           Already have an account?
           <Link to={redirect === "/" ? "signin" : "signin?redirect=" + redirect} className="button dark text-center" >Create your amazona account</Link>
-
         </li>
-
       </ul>
     </form>
   </div>
